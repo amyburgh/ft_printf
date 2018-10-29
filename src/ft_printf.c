@@ -6,7 +6,7 @@
 /*   By: amyburgh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/16 16:32:29 by amyburgh          #+#    #+#             */
-/*   Updated: 2018/10/27 22:16:25 by amyburgh         ###   ########.fr       */
+/*   Updated: 2018/10/28 18:30:22 by amyburgh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 
 void	error(char *str)
 {
-	ft_putstr(str);
+	pf_putstr(str);
 	exit (1);
 }
 
@@ -31,15 +31,15 @@ void	fill_buffer(t_pf *p)
 	len = pf_formatlen(p->format);
 	n = 0;
 	if (p->buffer)
-		n = ft_strlen(p->buffer);
-	temp = ft_strnew(n + len);
+		n = pf_strlen(p->buffer);
+	temp = pf_strnew(n + len);
 	begin = temp;
 	if (p->buffer)
 	{
-		ft_strcpy(temp, p->buffer); // Use memcopy
+		pf_strcpy(temp, p->buffer); // Use memcopy
 		temp += n; //PROBLEM!!!!!!!!!!!!!!
 	}
-	ft_strccpy(temp, p->format, '%');
+	pf_strccpy(temp, p->format, '%');
 	p->format += len; // Find better way!
 	free(p->buffer);
 	p->buffer = begin;
@@ -62,7 +62,7 @@ int		ft_printf(const char *format, ...)
 			fill_buffer(&p);
 	}
 	va_end(p.ap);
-	p.size = ft_strlen(p.buffer); // Review this logic!
+	p.size = pf_strlen(p.buffer); // Review this logic!
 	printf("++++++++++++++++++++++++++++++++++++++++++++++++\n");
 	write(p.fd, p.buffer, p.size);
 	return ((int)p.size);

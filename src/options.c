@@ -6,7 +6,7 @@
 /*   By: amyburgh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/20 15:39:07 by amyburgh          #+#    #+#             */
-/*   Updated: 2018/10/27 22:07:11 by amyburgh         ###   ########.fr       */
+/*   Updated: 2018/10/28 18:29:23 by amyburgh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,8 @@ void	get_width_prec(t_pf	*p)
 	if (IS_DIGIT(*p->format) || p->masks & PF_WILD)
 	{
 		p->masks |= PF_WIDTH; // Switch is already on for '*'
-		p->width = (p->masks & PF_WILD ? va_arg(p->ap, int) : ft_atoi(p->format));
-		p->format += (p->masks & PF_WILD ? 0 : ft_digitcount(p->width));
+		p->width = (p->masks & PF_WILD ? va_arg(p->ap, int) : pf_atoi(p->format));
+		p->format += (p->masks & PF_WILD ? 0 : pf_digitcount(p->width));
 	}
 	if (*p->format == '.')
 	{
@@ -61,8 +61,8 @@ void	get_width_prec(t_pf	*p)
 		p->format++;
 		if (IS_DIGIT(*p->format))
 		{
-			p->prec = ft_atoi(p->format);
-			p->format += ft_digitcount(p->prec);
+			p->prec = pf_atoi(p->format);
+			p->format += pf_digitcount(p->prec);
 		}
 		else if (*p->format == '*')
 		{
@@ -113,13 +113,13 @@ void	get_opts(t_pf *p)
 	get_width_prec(p);
 	get_length(p);
 	print_masks(p); // Print switches
-	while (i < 1) // 24... No. items in dispatch
+	while (i < 4) // 24... No. items in dispatch
 	{
-		if (*p->format == *ft_strchr("scdou", *p->format) && p->masks & PF_LONG)
+		if (*p->format == *pf_strchr("scdou", *p->format) && p->masks & PF_LONG)
 			mod = ' ';
 		if (g_select[i].op == (*p->format ^ mod))
 			g_select[i].s(p);
-		else if (i == 0) // CHANGE TO 24
+		else if (i == 4) // CHANGE TO 24
 			error(ERROR1);
 		i++;
 	}

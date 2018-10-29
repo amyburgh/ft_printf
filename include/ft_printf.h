@@ -6,7 +6,7 @@
 /*   By: amyburgh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/14 19:47:06 by amyburgh          #+#    #+#             */
-/*   Updated: 2018/10/27 22:02:24 by amyburgh         ###   ########.fr       */
+/*   Updated: 2018/10/28 18:34:15 by amyburgh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include <stddef.h>
 # include <stdarg.h>
 # include <stdlib.h>
-# include "libft.h"
+# include "macros.h"
 
 # include <stdio.h> // Remove later
 
@@ -70,6 +70,7 @@ typedef struct	s_pf
 	int		width;
 	int		prec;
 	int		len;
+	char	sign;
 	va_list	ap;
 	size_t	size;
 	char	*format;
@@ -98,6 +99,18 @@ void	get_opts(t_pf *p);
 /*
 ** ---------- tools.c ----------
 */
+char	*pf_itoa(int n);
+int		pf_atoi(const char *str);
+size_t	pf_digitcount(long long n);
+char	*pf_strchr(const char *s, int c);
+char	*pf_strdup(const char *s1);
+char	*pf_strccpy(char *dst, const char *src, char c);
+char	*pf_strcpy(char *dst, const char *src);
+void	pf_bzero(void *s, size_t n);
+void	*pf_memalloc(size_t	size);
+char	*pf_strnew(size_t size);
+size_t	pf_strlen(const char *s);
+void	pf_putstr(char const *s);
 size_t	pf_formatlen(char *str);
 void	print_masks(t_pf *p);
 void	*pf_buffmemcpy(void *dst, const void *src, size_t n);
