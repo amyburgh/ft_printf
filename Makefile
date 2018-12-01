@@ -5,58 +5,48 @@
 #                                                     +:+ +:+         +:+      #
 #    By: amyburgh <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2018/09/14 19:41:42 by amyburgh          #+#    #+#              #
-#    Updated: 2018/10/28 18:36:49 by amyburgh         ###   ########.fr        #
+#    Created: 2018/11/15 20:13:18 by amyburgh          #+#    #+#              #
+#    Updated: 2018/11/30 23:02:18 by amyburgh         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libftprintf.a
 
 CC = gcc
-CFLAFGS = -Wall -Werror -Wextra
+CFLAGS = -Wall -Werror -Wextra -O3
 
-SRCDIR = ./src
-OBJDIR = ./obj
-INCDIR = ./include
+SRC_FILES = ft_printf \
+			formatting \
+			tools \
+			length
 
-SRC_FILES = ft_printf.c \
-			options.c \
-			dispatch.c \
-			tools.c \
-			\
-			fmt_s.c \
-			fmt_ss.c \
-			fmt_p.c \
-			fmt_d.c \
-			\
+INCDIR = ./libft/include
 
-SRC = $(addprefix $(SRCDIR)/, $(SRC_FILES))
-OBJ = $(addprefix $(OBJDIR)/, $(SRC_FILES:.c=.o))
-INC = $(addprefix -I, $(INCDIR))
+SRC = $(addsuffix .c, $(SRC_FILES))
+OBJ = $(addsuffix .o, $(SRC_FILES))
+INC = $(addprefix -I , $(INCDIR))
 
 .PHONY: all clean fclean re
 .SILENT:
 
-all: build $(NAME)
+all: $(NAME)
 
 $(NAME): $(OBJ)
-	ar rc $@ $^
+	make -C libft
+	gcc $(CFLAGS) $(INC) -c $(SRC) 
+	ar rc $@ $^ libft/obj/*.o
 	ranlib $@
-#	$(CC) $(CFLAGS) -L $(LIBFT) -lft -o $@ $^
-	echo "ft_printf.a: \033[32m[CREATED]\033[0m"
-
-$(OBJDIR)/%.o : $(SRCDIR)/%.c
-	$(CC) $(CLFAGS) $(INC) -o $@ -c $<
-
-build:
-	mkdir -p $(OBJDIR)
+	echo $(NAME)": \033[32m[CREATED]\033[0m"
 
 clean:
-	rm -rf $(OBJDIR)
+	make -C libft clean
+	rm -f $(OBJ)
 	echo "object_files: \033[32m[REMOVED]\033[0m"
 
-fclean:	clean
+fclean:
+	make -C libft fclean
+	rm -f $(OBJ)
 	rm -f $(NAME)
 	echo $(NAME)": \033[32m[REMOVED]\033[0m"
 
-re:	fclean all
+re: fclean all
