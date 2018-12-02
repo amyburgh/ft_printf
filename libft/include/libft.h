@@ -6,7 +6,7 @@
 /*   By: amyburgh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/16 23:44:20 by amyburgh          #+#    #+#             */
-/*   Updated: 2018/11/25 21:18:30 by amyburgh         ###   ########.fr       */
+/*   Updated: 2018/12/01 16:41:18 by amyburgh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <stddef.h>
 # include <stdint.h>
+# include <inttypes.h>
 # include "macros.h"
 # include "get_next_line.h"
 
