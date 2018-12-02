@@ -6,7 +6,7 @@
 /*   By: amyburgh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/12 20:39:03 by amyburgh          #+#    #+#             */
-/*   Updated: 2018/11/30 15:12:00 by amyburgh         ###   ########.fr       */
+/*   Updated: 2018/12/01 16:34:46 by amyburgh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,16 +87,23 @@ typedef union			u_data
 	ssize_t				us_t;
 	intmax_t			im;
 	uintmax_t			uim;
-	double				d; // NEW
-	long double			ld;
+//	double				d; // NEW
+//	long double			ld;
 }						t_data;
+
+typedef struct		s_double
+{
+	double			d;
+	long double		ld;
+}					t_double;
 
 typedef struct	s_pf
 {
-	t_data	data;
-	uint32_t m;
-	int		width;
-	int		prec;
+	t_data		data;
+	t_double	data2;
+	uint32_t 	m;
+	int			width;
+	int			prec;
 }				t_pf;
 
 typedef struct	s_dispatch

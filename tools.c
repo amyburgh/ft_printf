@@ -6,7 +6,7 @@
 /*   By: amyburgh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/14 15:50:53 by amyburgh          #+#    #+#             */
-/*   Updated: 2018/11/30 22:41:29 by amyburgh         ###   ########.fr       */
+/*   Updated: 2018/12/01 16:06:57 by amyburgh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ void	handle_errors(t_pf p)
 
 	error = NULL;
 	if ((p.m & T_CHAR || p.m & T_WCHAR) &&
-			(p.m & (POUND | ZERO | PLUS) || p.prec))
+			(p.m & (POUND | ZERO | PLUS)))
 		error = ERROR;
 	else if (p.m & T_STR && (p.m & (POUND | ZERO | PLUS)))
 		error = ERROR;
@@ -112,6 +112,7 @@ const t_dispatch	g_select[] = {
 	{'f', T_FLOAT},
 	{'o', T_OCTAL},
 	{'u', T_UINT},
+	{'U', T_UINT},
 	{'x', T_HEX},
 	{'X', T_HEX2},
 	{'c', T_CHAR},

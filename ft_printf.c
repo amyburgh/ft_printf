@@ -6,7 +6,7 @@
 /*   By: amyburgh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/12 20:49:41 by amyburgh          #+#    #+#             */
-/*   Updated: 2018/12/01 00:04:13 by amyburgh         ###   ########.fr       */
+/*   Updated: 2018/12/01 16:37:59 by amyburgh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static void	get_specifier(t_pf *p, char **f)
 		p->data = (t_data)'%';
 		p->m |= T_PERC;
 	}
-	if (g_select[i].op == 'f')
+	else if (g_select[i].op == 'f')
 	{
 		temp = *f;
 		while (*temp != '%' && *temp != '.')
@@ -41,6 +41,8 @@ static void	get_specifier(t_pf *p, char **f)
 		if (*temp == '%')
 			p->prec = 6;
 	}
+	else if (g_select[i].op == 'D' || g_select[i].op == 'U')
+		p->m |= L_L;
 }
 
 static void	get_flags(t_pf *p, char **f)
@@ -91,7 +93,7 @@ static void	get_options(char **f, char **b, va_list ap, size_t *len)
 {
 	t_pf	p;
 
-	p = (t_pf){{0}, 0, 0, 0};
+	p = (t_pf){{0}, {0, 0}, 0, 0, 0};
 	get_flags(&p, f);
 	p.width = p.m & WILD ? va_arg(ap, int) : get_num(f);
 	if (**f == '.')
@@ -109,9 +111,9 @@ static void	get_options(char **f, char **b, va_list ap, size_t *len)
 	get_length(&p, f);
 	get_specifier(&p, f);
 	if (p.m & T_FLOAT && p.m & L_L)
-		p.data.ld = va_arg(ap, long double);
+		p.data2.ld = va_arg(ap, long double);
 	else if (p.m & T_FLOAT)
-		p.data.d = va_arg(ap, double);
+		p.data2.d = va_arg(ap, double);
 	else if (!(p.m & T_PERC))
 		p.data = va_arg(ap, t_data);
 	get_format(p, b, len);
