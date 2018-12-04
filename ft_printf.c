@@ -6,7 +6,7 @@
 /*   By: amyburgh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/12 20:49:41 by amyburgh          #+#    #+#             */
-/*   Updated: 2018/12/01 16:37:59 by amyburgh         ###   ########.fr       */
+/*   Updated: 2018/12/03 17:20:53 by amyburgh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@ static void	get_specifier(t_pf *p, char **f)
 	}
 	else if (g_select[i].op == 'D' || g_select[i].op == 'U')
 		p->m |= L_L;
+	else if (g_select[i].op =='p')
+		p->m |= POUND;
 }
 
 static void	get_flags(t_pf *p, char **f)
