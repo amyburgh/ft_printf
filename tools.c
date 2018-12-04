@@ -6,7 +6,7 @@
 /*   By: amyburgh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/14 15:50:53 by amyburgh          #+#    #+#             */
-/*   Updated: 2018/12/01 16:06:57 by amyburgh         ###   ########.fr       */
+/*   Updated: 2018/12/03 17:25:12 by amyburgh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ void	handle_errors(t_pf p)
 		error = ERROR;
 	else if (p.m & T_STR && (p.m & (POUND | ZERO | PLUS)))
 		error = ERROR;
-	else if (p.m & T_PTR && (p.m & (POUND | ZERO | PLUS | SPACE) || p.prec))
+	else if (p.m & T_PTR && (p.m & (ZERO | PLUS | SPACE) || p.prec))
 		error = ERROR;
 	else if (p.m & T_INT && p.m & POUND)
 		error = ERROR;
