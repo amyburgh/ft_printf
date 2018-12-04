@@ -6,7 +6,7 @@
 /*   By: amyburgh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/14 15:49:21 by amyburgh          #+#    #+#             */
-/*   Updated: 2018/12/03 17:26:29 by amyburgh         ###   ########.fr       */
+/*   Updated: 2018/12/03 17:28:41 by amyburgh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ static void	name_later(t_pf	p, char **str, uintmax_t n)
 	else if (p.m & T_HEX2 && !(p.m & POINT && !n))
 		*str = ft_uitoa_base(n, 16);
 	else if (p.m & T_PTR)
-		*str = ft_itoa_base(p.data.p, 16);
+		*str = ft_strcaseswap(ft_itoa_base(p.data.p, 16));
 	else if (p.m & T_OCTAL && !(p.m & POINT && !n))
 		*str = ft_uitoa_base(n, 8);
 	else
