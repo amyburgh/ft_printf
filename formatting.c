@@ -6,7 +6,7 @@
 /*   By: amyburgh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/14 15:49:21 by amyburgh          #+#    #+#             */
-/*   Updated: 2018/12/01 17:18:29 by amyburgh         ###   ########.fr       */
+/*   Updated: 2018/12/03 17:26:29 by amyburgh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static void	handle_pound(t_pf p, char **str, uintmax_t n)
 {
 	if (p.m & T_OCTAL && n)
 		ft_strprefix("0", str);
-	else if ((p.m & T_HEX || p.m & T_PTR) && n)
+	else if ((p.m & T_HEX && n) || p.m & T_PTR)
 		ft_strprefix("0x", str);
 	else if (p.m & T_HEX2 && n)
 		ft_strprefix("0X", str);
