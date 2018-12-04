@@ -6,12 +6,12 @@
 /*   By: amyburgh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/29 15:10:35 by amyburgh          #+#    #+#             */
-/*   Updated: 2018/12/01 16:43:03 by amyburgh         ###   ########.fr       */
+/*   Updated: 2018/12/01 16:46:39 by amyburgh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
 #include <stdlib.h>
+#include "libft.h"
 
 char	*ft_itoa_base(intmax_t value, int base)
 {

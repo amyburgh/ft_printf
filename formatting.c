@@ -6,7 +6,7 @@
 /*   By: amyburgh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/14 15:49:21 by amyburgh          #+#    #+#             */
-/*   Updated: 2018/12/01 16:35:56 by amyburgh         ###   ########.fr       */
+/*   Updated: 2018/12/01 17:18:29 by amyburgh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,14 @@
 
 static void	handle_pound(t_pf p, char **str, uintmax_t n)
 {
-	if (p.m & T_OCTAL)
+	if (p.m & T_OCTAL && n)
 		ft_strprefix("0", str);
 	else if ((p.m & T_HEX || p.m & T_PTR) && n)
 		ft_strprefix("0x", str);
 	else if (p.m & T_HEX2 && n)
 		ft_strprefix("0X", str);
+	else if (p.m & T_OCTAL && p.m & POINT)
+		ft_strprefix("0", str);
 }
 
 static void	apply_format(t_pf p, char **str, uintmax_t n)
@@ -39,11 +41,11 @@ static void	apply_format(t_pf p, char **str, uintmax_t n)
 		ft_strprefix(" ", str);
 	//p.width -= ft_strlen(*str) + (p.m & PLUS ? 1 : 0) + (p.m & (POUND | ZERO) ? 2 : 1);
 	p.width -= ft_strlen(*str) + (p.m & PLUS && (intmax_t)n >= 0 ? 1 : 0) + (p.m & POUND && p.m & ZERO ? 2 : 0);
-	if (p.width > 0) // p.width != 0
+	if (p.width > 0)
 	{
 		if (p.m & MINUS)
 			while (p.width--)
-				ft_strsuffix(str, " "); // This could be wrong!
+				ft_strsuffix(str, " ");
 		else
 			while (p.width--)
 				ft_strprefix(p.m & ZERO && !(p.m & POINT) ? "0" : " ", str);
@@ -79,7 +81,6 @@ static void	name_later(t_pf	p, char **str, uintmax_t n)
 	else if (p.m & T_FLOAT && !(p.m & POINT && !n))
 		*str = ft_dtoa(p.data2.d, p.prec);
 	else if (p.m & T_HEX && !(p.m & POINT && !n))
-	//else if (p.m & T_HEX)
 		*str = ft_strcaseswap(ft_uitoa_base(n, 16));
 	else if (p.m & T_HEX2 && !(p.m & POINT && !n))
 		*str = ft_uitoa_base(n, 16);
@@ -101,7 +102,7 @@ void	get_format(t_pf p, char **b, size_t *len)
 	n = (p.m > T_STR && !(p.m & T_FLOAT) ? lenght_format(p) : 0);
 	l = p.m & T_CHAR && !p.data.c ? p.width : 0;
 	name_later(p, &str, n);
-	if (p.m >= T_PERC) // (pf.type && !(pf.type == t_char && !pf.len))
+	if (p.m >= T_PERC)
 	{
 		apply_format(p, &str, n);
 		if (p.m & T_CHAR && !p.data.c)
