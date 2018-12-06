@@ -6,7 +6,7 @@
 /*   By: amyburgh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/14 15:49:21 by amyburgh          #+#    #+#             */
-/*   Updated: 2018/12/06 00:12:54 by amyburgh         ###   ########.fr       */
+/*   Updated: 2018/12/06 00:35:29 by amyburgh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ void		print_format(t_pf *p, va_list ap, size_t *len)
 
 	l = 0;
 	handle_errors(*p);
-	n = (p->m >= T_PTR && p->m < T_FLOAT ? lenght_format(p, ap) : 0);
+	n = (p->m > T_PTR && p->m < T_FLOAT ? lenght_format(p, ap) : 0);
 	if (p->m < T_PTR)
 	{
 		convert_strings(*p, ap, &str);
