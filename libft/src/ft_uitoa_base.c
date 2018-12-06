@@ -6,7 +6,7 @@
 /*   By: amyburgh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/19 19:50:21 by amyburgh          #+#    #+#             */
-/*   Updated: 2018/11/26 13:25:32 by amyburgh         ###   ########.fr       */
+/*   Updated: 2018/12/06 00:08:01 by amyburgh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static int	ft_size(uintmax_t new, int base)
 	return (i);
 }
 
-char	*ft_uitoa_base(uintmax_t value, int base)
+char		*ft_uitoa_base(uintmax_t value, int base)
 {
 	char		*str;
 	uintmax_t	n;

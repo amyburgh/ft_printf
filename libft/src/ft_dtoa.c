@@ -6,7 +6,7 @@
 /*   By: amyburgh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/23 21:09:25 by amyburgh          #+#    #+#             */
-/*   Updated: 2018/11/25 15:33:40 by amyburgh         ###   ########.fr       */
+/*   Updated: 2018/12/06 00:08:28 by amyburgh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static int	ft_pow(long double n, int pow)
 	return (n);
 }
 
-char	*ft_dtoa(long double n, int p)
+char		*ft_dtoa(long double n, int p)
 {
 	char	*s;
 	char	*temp;
@@ -31,9 +31,15 @@ char	*ft_dtoa(long double n, int p)
 		ft_strsuffix(&s, ".");
 		n -= (int)n;
 		n = ft_pow(n, p);
-		temp = ft_itoa(n);
-		ft_strsuffix(&s, temp);
-		free(temp);
+		if (n)
+		{
+			temp = ft_itoa(n);
+			ft_strsuffix(&s, temp);
+			free(temp);
+		}
+		else
+			while (p--)
+				ft_strsuffix(&s, "0");
 	}
 	return (s);
 }

@@ -6,7 +6,7 @@
 #    By: amyburgh <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/15 20:13:18 by amyburgh          #+#    #+#              #
-#    Updated: 2018/11/30 23:02:18 by amyburgh         ###   ########.fr        #
+#    Updated: 2018/12/06 00:03:32 by amyburgh         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,9 +16,11 @@ CC = gcc
 CFLAGS = -Wall -Werror -Wextra -O3
 
 SRC_FILES = ft_printf \
-			formatting \
-			tools \
-			length
+			get_format \
+			print_format \
+			get_length\
+			format_tools \
+			general_tools
 
 INCDIR = ./libft/include
 

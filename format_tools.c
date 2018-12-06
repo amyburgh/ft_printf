@@ -1,43 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tools.c                                            :+:      :+:    :+:   */
+/*   format_tools.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amyburgh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/14 15:50:53 by amyburgh          #+#    #+#             */
-/*   Updated: 2018/12/03 17:25:12 by amyburgh         ###   ########.fr       */
+/*   Created: 2018/12/05 23:42:09 by amyburgh          #+#    #+#             */
+/*   Updated: 2018/12/05 23:59:25 by amyburgh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-char	*fill_buffer(char **buff, size_t len, const char *f, size_t i)
+void	handle_pound(t_pf p, char **str, uintmax_t n)
 {
-	char 	*new;
-
-	if (!i)
-		return (*buff);
-	if ((new = ft_strnew(len + i)))
-	{
-		if (len)
-			new = ft_memcpy(new, *buff, len);
-		new = ft_memcpy(new + len, f, i);
-		new -= len;
-	}
-	free(*buff);
-	return (new);
-}
-
-void	handle_null(char **str)
-{
-	size_t	i;
-
-	i = 0;
-	while ((*str)[i])
-		i++;
-	(*str)[i] = ' ';
-	**str = '\0';
+	if (p.m & T_OCTAL && n)
+		ft_strprefix("0", str);
+	else if ((p.m & T_HEX && n) || p.m & T_PTR)
+		ft_strprefix("0x", str);
+	else if (p.m & T_HEX2 && n)
+		ft_strprefix("0X", str);
+	else if (p.m & T_OCTAL && p.m & POINT)
+		ft_strprefix("0", str);
 }
 
 void	handle_neg(char a, char b, char **str)
@@ -58,6 +42,34 @@ void	handle_neg(char a, char b, char **str)
 			(*str)[j] = a;
 			(*str)[i] = b;
 		}
+	}
+}
+
+void	handle_null(char **str, int left, size_t *l)
+{
+	size_t	i;
+
+	i = 0;
+	while ((*str)[i])
+		i++;
+	if (left & MINUS)
+	{
+		(*str)[i] = ' ';
+		**str = '\0';
+	}
+	*l += i;
+}
+
+void	handle_width(t_pf p, char **str)
+{
+	if (p.width > 0)
+	{
+		if (p.m & MINUS && !(p.m & CNULL))
+			while (p.width--)
+				ft_strsuffix(str, " ");
+		else
+			while (p.width--)
+				ft_strprefix(p.m & ZERO && !(p.m & POINT) ? "0" : " ", str);
 	}
 }
 
@@ -86,36 +98,3 @@ void	handle_errors(t_pf p)
 		exit(1);
 	}
 }
-
-size_t	get_num(char **f)
-{
-	size_t	n;
-
-	n = 0;
-	while (**f && IS_DIGIT(**f))
-	{
-		n *= 10;
-		n += **f - '0';
-		++*f;
-	}
-	return (n);
-}
-
-const t_dispatch	g_select[] = {
-	{'%', T_PERC},
-	{'s', T_STR},
-//	{'s', T_WSTR}, // NEW
-	{'p', T_PTR},
-	{'d', T_INT},
-	{'i', T_INT},
-	{'D', T_INT}, // NEW
-	{'f', T_FLOAT},
-	{'o', T_OCTAL},
-	{'u', T_UINT},
-	{'U', T_UINT},
-	{'x', T_HEX},
-	{'X', T_HEX2},
-	{'c', T_CHAR},
-	{'C', T_WCHAR}, // NEW
-	{'\0', 0}
-};

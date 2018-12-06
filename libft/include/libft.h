@@ -6,7 +6,7 @@
 /*   By: amyburgh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/16 23:44:20 by amyburgh          #+#    #+#             */
-/*   Updated: 2018/11/25 21:18:30 by amyburgh         ###   ########.fr       */
+/*   Updated: 2018/12/06 00:15:31 by amyburgh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ char			*ft_itoa(int n);
 char			*ft_uitoa(unsigned int n);
 char			*ft_itoa_base(intmax_t value, int base);
 char			*ft_uitoa_base(uintmax_t value, int base);
-char			*ft_dtoa(long double, int base);
+char			*ft_dtoa(long double value, int base);
 char			*ft_strcaseswap(char *str);
 char			*ft_chartostr(char c);
 /*
