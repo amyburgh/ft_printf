@@ -6,7 +6,7 @@
 /*   By: amyburgh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/12 20:39:03 by amyburgh          #+#    #+#             */
-/*   Updated: 2018/12/06 00:20:06 by amyburgh         ###   ########.fr       */
+/*   Updated: 2018/12/06 18:35:19 by amyburgh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <stddef.h>
 # include <stdarg.h>
 # include <stdlib.h>
+#include <stdio.h>
 # include "libft/include/libft.h"
 
 /*

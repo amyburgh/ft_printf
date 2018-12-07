@@ -6,7 +6,7 @@
 /*   By: amyburgh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/14 15:49:21 by amyburgh          #+#    #+#             */
-/*   Updated: 2018/12/06 00:35:29 by amyburgh         ###   ########.fr       */
+/*   Updated: 2018/12/06 18:37:57 by amyburgh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,7 @@ static void	convert_numbers(t_pf p, va_list ap, char **str, uintmax_t n)
 		*str = ft_uitoa_base(n, 8);
 	else
 		*str = ft_strnew(0);
+	//printf("%s\n", *str);
 }
 
 void		print_format(t_pf *p, va_list ap, size_t *len)
@@ -99,7 +100,7 @@ void		print_format(t_pf *p, va_list ap, size_t *len)
 
 	l = 0;
 	handle_errors(*p);
-	n = (p->m > T_PTR && p->m < T_FLOAT ? lenght_format(p, ap) : 0);
+	n = (p->m >= T_INT && p->m < T_FLOAT ? lenght_format(p, ap) : 0);
 	if (p->m < T_PTR)
 	{
 		convert_strings(*p, ap, &str);
