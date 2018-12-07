@@ -6,7 +6,7 @@
 /*   By: amyburgh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/14 15:49:21 by amyburgh          #+#    #+#             */
-/*   Updated: 2018/12/06 19:17:07 by amyburgh         ###   ########.fr       */
+/*   Updated: 2018/12/06 19:15:50 by amyburgh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,8 @@ static void	convert_numbers(t_pf p, va_list ap, char **str, uintmax_t n)
 		*str = ft_itoa_base(n, 10);
 	else if (p.m & T_UINT)
 		*str = ft_uitoa_base(n, 10);
+//	else if (p.m & T_FLOAT && p.m & L_L)
+//		*str = ft_dtoa(va_arg(ap, double), p.prec);
 	else if (p.m & T_FLOAT)
 		*str = ft_dtoa(va_arg(ap, double), p.prec);
 	else if (p.m & T_HEX)
@@ -87,6 +89,7 @@ static void	convert_numbers(t_pf p, va_list ap, char **str, uintmax_t n)
 		*str = ft_uitoa_base(n, 8);
 	else
 		*str = ft_strnew(0);
+	//printf("%s\n", *str);
 }
 
 void		print_format(t_pf *p, va_list ap, size_t *len)
