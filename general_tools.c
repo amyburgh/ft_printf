@@ -6,7 +6,7 @@
 /*   By: amyburgh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/14 15:50:53 by amyburgh          #+#    #+#             */
-/*   Updated: 2018/12/06 00:11:46 by amyburgh         ###   ########.fr       */
+/*   Updated: 2018/12/06 19:19:04 by amyburgh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ const	t_dispatch	g_s[] = {
 	{'i', T_INT},
 	{'D', T_INT},
 	{'f', T_FLOAT},
+	{'F', T_FLOAT},
 	{'o', T_OCTAL},
 	{'u', T_UINT},
 	{'U', T_UINT},
