@@ -6,7 +6,7 @@
 /*   By: amyburgh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/30 12:51:12 by amyburgh          #+#    #+#             */
-/*   Updated: 2018/12/06 19:05:32 by amyburgh         ###   ########.fr       */
+/*   Updated: 2018/12/06 19:50:56 by amyburgh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,6 @@ uintmax_t			lenght_format(t_pf *p, va_list ap)
 {
 	uintmax_t	n;
 
-	printf("entered length\n");
 	n = 0;
 	if (p->m & T_INT)
 	{
