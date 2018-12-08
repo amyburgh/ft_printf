@@ -6,7 +6,7 @@
 /*   By: amyburgh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/05 23:32:34 by amyburgh          #+#    #+#             */
-/*   Updated: 2018/12/07 18:43:46 by amyburgh         ###   ########.fr       */
+/*   Updated: 2018/12/07 19:03:55 by amyburgh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,9 @@ static void	get_specifier(t_pf *p, char **f)
 			break ;
 		}
 	}
-	if (ft_strchr("DUF", g_s[i].op))
+	if (ft_strchr("DU", g_s[i].op))
 		old_format(p);
-	if (g_s[i].op == 'p')
+	else if (g_s[i].op == 'p')
 		p->m |= POUND;
 	else if (g_s[i].op == 'f' || g_s[i].op == 'F')
 	{
